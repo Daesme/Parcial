@@ -6,8 +6,8 @@
 package com.crunchify.jsp.servlet;
 
 import edu.co.sergio.mundo.dao.DepartamentoDAO;
-import edu.co.sergio.mundo.vo.Departamento;
-import edu.co.sergio.mundo.vo.consulta3;
+import edu.co.sergio.mundo.vo.Colmena;
+import edu.co.sergio.mundo.vo.consulta;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Paint;
@@ -72,7 +72,7 @@ public class ChartServlet extends HttpServlet {
         
     public JFreeChart getChart() throws URISyntaxException {
 
-        List<Departamento> arr = new LinkedList();
+        List<Colmena> arr = new LinkedList();
        DepartamentoDAO DepartamentoDAO = new DepartamentoDAO();
         arr =   DepartamentoDAO.findAll();
         double[][] data = new double[1][arr.size()];

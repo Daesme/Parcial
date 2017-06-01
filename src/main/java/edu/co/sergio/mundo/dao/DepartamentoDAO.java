@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import edu.co.sergio.mundo.vo.Departamento;
-import edu.co.sergio.mundo.vo.consulta3;
+import edu.co.sergio.mundo.vo.Colmena;
+import edu.co.sergio.mundo.vo.consulta;
 import java.net.URISyntaxException;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  */
  
 
-public class DepartamentoDAO implements IBaseDatos<Departamento> {
+public class DepartamentoDAO implements IBaseDatos<Colmena> {
 
     
     
@@ -104,9 +104,9 @@ public class DepartamentoDAO implements IBaseDatos<Departamento> {
         return con2;
     }
     
-    public LinkedList<consulta3> consulta3(){
+    public LinkedList<consulta> consulta3(){
        
-        LinkedList<consulta3> c3 = new LinkedList<consulta3>();
+        LinkedList<consulta> c3 = new LinkedList<consulta>();
         
         String query = "select nom_depto, tipo_contrato, count(*) as total from Depto join Empleado using (id_depto) group by nom_depto, tipo_contrato having count(*)>1";
         Connection connection = null;
@@ -132,7 +132,7 @@ public class DepartamentoDAO implements IBaseDatos<Departamento> {
 	        
                 total=rs.getInt("total");
                 
-	        consulta3 registro= new consulta3(nom_dep, tipodeco, total);
+	        consulta registro= new consulta(nom_dep, tipodeco, total);
 	      c3.add(registro);
 	    }
 	    st.close();
@@ -153,8 +153,8 @@ public class DepartamentoDAO implements IBaseDatos<Departamento> {
 	 * @return List<Departamento> Retorna la lista de Departamentos existentes en la base de datos
 	 */
     
-	public List<Departamento> findAll() {
-		List<Departamento> departamentos= null;
+	public List<Colmena> findAll() {
+		List<Colmena> departamentos= null;
 	    String query = "SELECT * FROM Depto";
 	    Connection connection = null;
             try {
@@ -170,10 +170,10 @@ public class DepartamentoDAO implements IBaseDatos<Departamento> {
 	
 	    while (rs.next()){
 	    	if(departamentos == null){
-	    		departamentos= new ArrayList<Departamento>();
+	    		departamentos= new ArrayList<Colmena>();
 	    	}
 	      
-	        Departamento registro= new Departamento();
+	        Colmena registro= new Colmena();
 	        id = rs.getInt("id_depto");
 	        registro.setId_departamento(id);
 	        
@@ -198,7 +198,7 @@ public class DepartamentoDAO implements IBaseDatos<Departamento> {
 	 * @param Departamento recibe un objeto de tipo Departamento 
 	 * @return boolean retorna true si la operacion de insercion es exitosa.
 	 */
-	public boolean insert(Departamento t) {
+	public boolean insert(Colmena t) {
 		boolean result=false;
 		Connection connection=null;
             try {
@@ -224,7 +224,7 @@ public class DepartamentoDAO implements IBaseDatos<Departamento> {
 	 * @param Departamento recibe un objeto de tipo Departamento 
 	 * @return boolean retorna true si la operacion de actualizacion es exitosa.
 	 */
-	public boolean update(Departamento t) {
+	public boolean update(Colmena t) {
 		boolean result=false;
 		Connection connection= null;
             try {
@@ -254,7 +254,7 @@ public class DepartamentoDAO implements IBaseDatos<Departamento> {
 	 * @param Departamento recibe un objeto de tipo Departamento 
 	 * @return boolean retorna true si la operacion de borrado es exitosa.
 	 */
-	public boolean delete(Departamento t) {
+	public boolean delete(Colmena t) {
 	   boolean result=false;
 	   Connection connection = null;
             try {
